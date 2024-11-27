@@ -2,8 +2,20 @@ namespace ArraySlicing;
 
 public class ArraySlicingExample
 {
+    /*
+    This only works with Array, Span<T> and Memory<T> types.
+    list need to be converted to array before using this feature.
+    this will cause extra memory allocation.
+    */
     public static void Execute()
     {
+        string text = "Hello, World!";
+
+        // Slice using range syntax
+        var substring1 = text[7..12];  // Extracts from index 7 to index 11
+        Console.WriteLine(substring1);  // Output: World
+
+
         int[] numbers = { 10, 20, 30, 40, 50, 60, 70, 80, 90, 100 };
 
         // Slice with start and end index (e.g., index 2 to 5)
