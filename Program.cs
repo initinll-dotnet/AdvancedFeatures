@@ -1,4 +1,5 @@
 ﻿using ActionAndFunc;
+using DeconstructMethod;
 using EventAndDelegate;
 using ExtensionMethod;
 using ImplicitAndExplicit;
@@ -54,4 +55,7 @@ feels natural and intuitive, similar to how it operates with built-in types.
 // OrderExtensionsDemo.Execute();
 // IEnumerableExtensionsDemo.Execute();
 
+//////////////////////////////////////////////////////
+/// Tuple Type
+DeconstructMethodDemo.Execute();
 
