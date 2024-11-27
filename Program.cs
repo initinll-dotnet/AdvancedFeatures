@@ -1,52 +1,57 @@
-﻿using EventAndDelegate;
+﻿using ActionAndFunc;
+using EventAndDelegate;
+using ExtensionMethod;
+using ImplicitAndExplicit;
+using OperatorOverloading;
 
-// Events and Delegates
+//////////////////////////////////////////////////////
+// // Events and Delegates
 
-DelegateDemo delegateDemo1 = new();
-delegateDemo1.Demo(
-    message: "Hey there",
-    demoCompletedDelegate: DemoComple,
-    sendConfirmationDelegate: SendEmail);
+// DelegateDemoProgram.Execute();
+// WorkerEventDemo.Execute();
 
-void DemoComple()
-{
-    Console.WriteLine("Demo completed");
-}
+//////////////////////////////////////////////////////
 
-bool SendEmail(string message)
-{
-    Console.WriteLine($"Confirmation Email sent: {message}");
-    return true;
-}
+// // Actions and Funcs
 
-DelegateDemo delegateDemo2 = new();
-delegateDemo2.Demo(
-    message: "Hello there",
-    demoCompletedDelegate: () => Console.WriteLine("Demo completed"),
-    sendConfirmationDelegate: bool (string msg) =>
-    {
-        Console.WriteLine($"Confirmation SMS sent: {msg}");
-        return true;
-    });
+// ActionFuncDemo.Execute();
 
-// var workerEventRaiser = new WorkerEventRaiser();
-// var workerEventHandler = new WorkerEventHandler(workerEventRaiser);
+//////////////////////////////////////////////////////
+/*
+Operator overloading is a feature in C# (and many other object-oriented languages) 
+that allows developers to redefine or "overload" the behavior of standard operators
+(like +, -, *, /, ==, etc.) for user-defined types (such as classes or structs). 
+By overloading an operator, you enable it to work with your custom types in a way that 
+feels natural and intuitive, similar to how it operates with built-in types.
+*/
+// // Operator Overloading
 
-// workerEventHandler.Subscribe();
+// // Overloading the + operator
+// VectorDemo.Execute();
 
-// workerEventRaiser.DoWork(8, WorkType.GenerateReports);
-// workerEventHandler.Unsubscribe();
+// // Overloading the == and != operators
+// PointDemo.Execute();
 
-// Actions and Funcs
-// ProcessData processData = new();
+// // // Overloading the > and < operators
+// FractionDemo.Execute();
 
-// var del = new SomeDelegate((x, y) => x * y);
-// // with delegate 
-// processData.Process(2, 3, del);
-// // with lambda
-// processData.Process(2, 3, (x, y) => x + y);
-// // using Action
-// processData.ProcessAction(2, 3, (x, y) => Console.WriteLine($"Action: {x + y}"));
-// // using Func
-// processData.ProcessFunc(2, 3, (x, y) => x - y);
+// // // Overloading the - operator
+// ComplexNumberDemo.Execute();
+
+//////////////////////////////////////////////////////
+
+/// Explicit and Implicit Conversion
+
+// /// Use implicit when conversions are always safe.
+// ImplicitConversionDemo.Execute();
+
+// /// Use explicit when conversions can be risky or involve a potential loss of information.
+// ExplicitConversionDemo.Execute();
+
+//////////////////////////////////////////////////////
+///
+/// Extension Methods
+// OrderExtensionsDemo.Execute();
+// IEnumerableExtensionsDemo.Execute();
+
 

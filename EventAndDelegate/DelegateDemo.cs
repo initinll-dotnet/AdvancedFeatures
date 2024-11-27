@@ -1,6 +1,6 @@
 namespace EventAndDelegate;
 
-public class DelegateDemo
+internal class DelegateDemo
 {
     public delegate bool SendConfirmationDelegate(string message);
     public delegate void DemoCompletedDelegate();
@@ -56,5 +56,38 @@ public class DelegateDemo
     private void WorkPerformed2(int hours, WorkType workType)
     {
         Console.WriteLine($"WorkPerformed2 called with {hours} hours of {workType}");
+    }
+}
+
+public class DelegateDemoProgram
+{
+    public static void Execute()
+    {
+        DelegateDemo delegateDemo1 = new();
+        delegateDemo1.Demo(
+            message: "Hey there",
+            demoCompletedDelegate: DemoComple,
+            sendConfirmationDelegate: SendEmail);
+
+        void DemoComple()
+        {
+            Console.WriteLine("Demo completed");
+        }
+
+        bool SendEmail(string message)
+        {
+            Console.WriteLine($"Confirmation Email sent: {message}");
+            return true;
+        }
+
+        DelegateDemo delegateDemo2 = new();
+        delegateDemo2.Demo(
+            message: "Hello there",
+            demoCompletedDelegate: () => Console.WriteLine("Demo completed"),
+            sendConfirmationDelegate: bool (string msg) =>
+            {
+                Console.WriteLine($"Confirmation SMS sent: {msg}");
+                return true;
+            });
     }
 }
