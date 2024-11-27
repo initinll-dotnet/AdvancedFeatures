@@ -1,3 +1,6 @@
+using System.Text.Json;
+using System.Text.Json.Serialization;
+
 namespace Records;
 
 // 1. Positional Record
@@ -55,6 +58,17 @@ public record ItemWithStatic
     public string Name { get; init; }
 }
 
+// 11. Record with `JsonIgnore` and `JsonPropertyName`
+public record Dummy(
+    [property: JsonPropertyName("customer_id")]
+    int Id,
+
+    [property: JsonPropertyName("customer_full_name")]
+    string FullName,
+
+    [property: JsonIgnore]
+    string Password);
+
 public class RecordExamples
 {
     // Method demonstrating all ways to define and use records
@@ -107,5 +121,19 @@ public class RecordExamples
         var itemWithStatic1 = new ItemWithStatic { Name = "Laptop" };
         ItemWithStatic.Count = 10;
         Console.WriteLine(ItemWithStatic.Count);  // Output: 10
+    }
+
+    // Serialization and Deserialization of a Record with JsonPropertyName and JsonIgnore
+    public static void SerializeAndDeserializeCustomerRecord()
+    {
+        var customer = new Dummy(1, "John Doe", "secret");
+
+        // Serialize the record to JSON string
+        string jsonString = JsonSerializer.Serialize(customer);
+        Console.WriteLine($"Serialized JSON (with JsonPropertyName and JsonIgnore): {jsonString}");
+
+        // Deserialize the JSON string back to a record
+        var deserializedCustomer = JsonSerializer.Deserialize<Dummy>(jsonString);
+        Console.WriteLine($"Deserialized Customer: {deserializedCustomer?.FullName}, Id: {deserializedCustomer?.Id}");
     }
 }
