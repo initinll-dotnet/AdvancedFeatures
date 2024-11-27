@@ -16,6 +16,11 @@ internal class Order
     }
 
     public override string ToString() => $"Order ID: {OrderId}, Customer: {CustomerName}, Total: {TotalAmount:C}, Shipped: {IsShipped}";
+
+    public void ApplyDiscount(double flatDiscount)
+    {
+        TotalAmount -= flatDiscount;
+    }
 }
 
 internal static class OrderExtensions
@@ -46,9 +51,10 @@ public class OrderExtensionsDemo
         Order order = new(101, 1200.50, false, "Nitin");
 
         Console.WriteLine(order);  // Initial Order
-
-        // Apply a 10% discount
-        order.ApplyDiscount(10);
+        // Apply a flat discount of $100 (Order Instance Method)
+        order.ApplyDiscount(flatDiscount: 100);
+        // Apply a 10% discount (Order Extension Method)
+        order.ApplyDiscount(discountPercentage: 10);
         Console.WriteLine("After Discount:");
         Console.WriteLine(order);  // Output: Total amount reduced by 10%
 
